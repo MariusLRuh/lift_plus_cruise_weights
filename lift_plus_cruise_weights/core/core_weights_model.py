@@ -40,9 +40,6 @@ class CoreWeightsModel(Model):
             shape=shape,
         ), name='wing_weight_regression_model')
         
-        self.add(TotalStructuralWeightRegressionModel(
-            shape=shape,
-        ), )
 
         self.add(NonStructuralWeightRegressionModel(
             shape=shape,
@@ -58,5 +55,6 @@ class CoreWeightsModel(Model):
         total_structural_weight = boom_weight + empennage_weight + fuselage_weight + wing_weight
         gross_weight = total_structural_weight + non_structural_weight
     
+        self.register_output('total_structural_weight',total_structural_weight)
         self.register_output('gross_weight', gross_weight)
         # self.add_objective('gross_weight')
