@@ -3,23 +3,15 @@ import csdl
 from csdl import Model 
 from csdl_om import Simulator
 
-from core.weights_regression_model import WeightsRegressionModel
-
-num_evaluations = 1
-
+from lift_plus_cruise_weights.core.core_weights_model import CoreWeightsModel
 
 # TO DO: get areas/AR/fuselage legnth + from points sets 
 
+num_evaluations = 1
 shape = (num_evaluations,)
-weights_model = WeightsRegressionModel(
+
+weights_model = CoreWeightsModel(
     shape=shape,
-    wing_area=np.array([210.28]),        # ft^2
-    wing_AR=np.array([12.1423]),         #
-    fuselage_length=np.array([30]),      # ft
-    battery_weight=np.array([2675.27]),  # lbs
-    cruise_speed=np.array([112]),        # ktas
-    tail_area=np.array([39.51]),         # ft^2
-    fin_area=np.array([27.34]),          # ft^2
 )
 
 sim = Simulator(weights_model)
@@ -29,3 +21,5 @@ sim.run()
 # sim.prob.check_totals(compact_print=True)
 
 print(sim['gross_weight'])
+print(sim['empennage_weight'])
+print(sim['fuselage_weight'])
