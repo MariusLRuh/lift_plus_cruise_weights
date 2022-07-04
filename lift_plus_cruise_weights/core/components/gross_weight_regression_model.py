@@ -12,13 +12,13 @@ class GrossWeightRegressionModel(Model):
     def define(self):
         shape = self.parameters['shape']
        
-        wing_area = self.declare_variable('wing_area', shape=shape)#, val=210.28)
-        wing_AR = self.declare_variable('wing_AR', shape=shape)#, val=12.1423)
-        fuselage_length = self.declare_variable('fuselage_length', shape=shape)#, val=30)
-        battery_weight = self.declare_variable('battery_weight', shape=shape)#, val=2675.27)
-        cruise_speed = self.declare_variable('cruise_speed', shape=shape)#, val=112)
-        tail_area = self.declare_variable('tail_area', shape=shape)#, val=39.51)
-        fin_area = self.declare_variable('fin_area', shape=shape)#, val=27.34)
+        wing_area = self.declare_variable('wing_area', shape=shape)
+        wing_AR = self.declare_variable('wing_AR', shape=shape)
+        fuselage_length = self.declare_variable('fuselage_length', shape=shape)
+        battery_weight = self.declare_variable('battery_weight', shape=shape)
+        cruise_speed = self.declare_variable('cruise_speed', shape=shape)
+        tail_area = self.declare_variable('tail_area', shape=shape)
+        fin_area = self.declare_variable('fin_area', shape=shape)
     
         gross_weight_minus_empennage = -49.118771850502334 * wing_area  -233.00816566857483 * wing_AR +  327.67564472201457 * fuselage_length +  2.2478553238442878 * battery_weight + 63.277198378545386  * cruise_speed + \
                        0.10364578242260847 * wing_area**2 + 0.7260390015132265 * wing_area * wing_AR + 0.30030382982080767 * wing_area * fuselage_length  -0.003683686051535743 * wing_area * battery_weight +  0.05797638247542994 * wing_area * cruise_speed + \

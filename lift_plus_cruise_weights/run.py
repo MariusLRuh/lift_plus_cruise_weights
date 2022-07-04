@@ -3,30 +3,36 @@ import csdl
 from csdl import Model 
 from csdl_om import Simulator
 
-from lift_plus_cruise_weights.core.core_weights_model import CoreWeightsModel
+from lift_plus_cruise_weights.core.lift_plus_cruise_weights_model import LiftPlusCruiseWeightsModel
 
 # TO DO: get areas/AR/fuselage legnth + from points sets 
 
-num_evaluations = 1
-shape = (num_evaluations,)
+num_nodes = 1
 
-weights_model = CoreWeightsModel(
-    shape=shape,
+
+weights_model = LiftPlusCruiseWeightsModel(
+    num_nodes=num_nodes,
 )
 
 sim = Simulator(weights_model)
+
 sim.run()
+
+
+print('\n')
+print('Mass properties:')
+print('mass: ',sim['mass'])
+print('cgx: ', sim['cgx'])
+print('cgy: ', sim['cgy'])
+print('cgz: ', sim['cgz'])
+print('ixx: ', sim['ixx'])
+print('iyy: ', sim['iyy'])
+print('izz: ', sim['izz'])
+print('ixy: ', sim['ixy'])
+print('ixz: ', sim['ixz'])
+print('iyz: ', sim['iyz'])
+
+
 
 # sim.prob.check_partials(compact_print=True)
 # sim.prob.check_totals(compact_print=True)
-
-print('empennage_weight: ',sim['empennage_weight'])
-print('fuselage_weight: ',sim['fuselage_weight'])
-print('wing_weight: ',sim['wing_weight'])
-print('boom_weight: ',sim['boom_weight'])
-print('-----------------------------')
-print('total_structural_weight: ', sim['total_structural_weight'])
-
-print('total_non_structural_weight: ', sim['non_structural_weight'])
-print('-----------------------------')
-print('gross_weight: ', sim['gross_weight'])
