@@ -1,5 +1,6 @@
 README.md
 setup.py
+lift_plus_cruise_weights/__init__.py
 lift_plus_cruise_weights/run.py
 lift_plus_cruise_weights.egg-info/PKG-INFO
 lift_plus_cruise_weights.egg-info/SOURCES.txt

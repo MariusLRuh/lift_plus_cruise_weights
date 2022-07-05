@@ -7,11 +7,11 @@ from lift_plus_cruise_weights.core.lift_plus_cruise_weights_model import LiftPlu
 
 # TO DO: get areas/AR/fuselage legnth + from points sets 
 
-num_nodes = 1
+num_evaluations = 1
 
 
 weights_model = LiftPlusCruiseWeightsModel(
-    num_nodes=num_nodes,
+    num_evaluations=num_evaluations,
 )
 
 sim = Simulator(weights_model)

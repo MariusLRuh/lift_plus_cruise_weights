@@ -25,11 +25,11 @@ class WingBoomFuselageStructRegressionModel(Model):
         wing_area = self.declare_variable('wing_area', shape=shape)
         wing_AR = self.declare_variable('wing_AR', shape=shape)
         fuselage_length = self.declare_variable('fuselage_length', shape=shape)
-        battery_weight = self.declare_variable('battery_weight', shape=shape)
+        battery_mass = self.declare_variable('battery_mass', shape=shape)
         cruise_speed = self.declare_variable('cruise_speed', shape=shape)
         
         for i in range(len(wing_boom_fuselage_list)):
             str = wing_boom_fuselage_list[i]
             reg_coeff = df[str].to_numpy()
-            pred = reg_coeff[0] * wing_area + reg_coeff[1] * wing_AR + reg_coeff[2] * fuselage_length + reg_coeff[3] * battery_weight + reg_coeff[4] * cruise_speed + reg_coeff[5]
+            pred = reg_coeff[0] * wing_area + reg_coeff[1] * wing_AR + reg_coeff[2] * fuselage_length + reg_coeff[3] * battery_mass + reg_coeff[4] * cruise_speed + reg_coeff[5]
             self.register_output(str,pred)

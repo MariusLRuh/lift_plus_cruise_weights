@@ -10,25 +10,25 @@ from lift_plus_cruise_weights.core.components.empennage.empennage_weight_regress
 
 class LiftPlusCruiseWeightsModel(Model):
     def initialize(self):
-        self.parameters.declare('num_nodes', default=1)
+        self.parameters.declare('num_evaluations', default=1)
    
     def define(self):
-        num_nodes = self.parameters['num_nodes']
+        num_evaluations = self.parameters['num_evaluations']
         
-        shape = (num_nodes,)
+        shape = (num_evaluations,)
         
         ft_2_to_m_2 = 1 / 10.764
         ft_to_m = 0.3048
         ktas_to_m_s = 1 / 1.944
         lbs_to_kg =  1 / 2.205
 
-        self.declare_variable('wing_area', shape=shape, units='ft^2' , val=210.28 * ft_2_to_m_2)
+        self.declare_variable('wing_area', shape=shape, units='m^2' , val=210.28 * ft_2_to_m_2)
         self.declare_variable('wing_AR', shape=shape, val=12.1423)
-        self.declare_variable('fuselage_length', shape=shape, units='ft' ,val=30 * ft_to_m)
-        self.declare_variable('battery_weight', shape=shape,units='lbs', val=2675.27 * lbs_to_kg)
-        self.declare_variable('cruise_speed', shape=shape, units='knots', val=112 * ktas_to_m_s)
-        self.declare_variable('tail_area', shape=shape, units='ft^2', val=39.51 * ft_2_to_m_2)
-        self.declare_variable('fin_area',shape=shape, units='ft^2', val=27.34 * ft_2_to_m_2)
+        self.declare_variable('fuselage_length', shape=shape, units='m' ,val=30 * ft_to_m)
+        self.declare_variable('battery_mass', shape=shape,units='kg', val=2675.27 * lbs_to_kg)
+        self.declare_variable('cruise_speed', shape=shape, units='m/s', val=112 * ktas_to_m_s)
+        self.declare_variable('tail_area', shape=shape, units='m^2', val=39.51 * ft_2_to_m_2)
+        self.declare_variable('fin_area',shape=shape, units='m^2', val=27.34 * ft_2_to_m_2)
         
 
         self.add(WingBoomFuselageStructRegressionModel(
